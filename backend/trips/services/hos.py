@@ -52,13 +52,36 @@ def build_trip_plan(total_miles):
 
             miles_covered = 0
 
-        logs.append({
-            "day": day + 1,
-            "driving_hours": round(drive_today, 2),
-            "driving_miles": round(day_miles),
-            "break_required": drive_today >= 8,
-            "off_duty_hours": 10
-        })
+            logs.append({
+                "day": day + 1,
+                "driving_hours": round(drive_today, 2),
+                "driving_miles": round(day_miles),
+                "break_required": drive_today >= 8,
+                "off_duty_hours": 10,
+
+                "segments": [
+                    {
+                        "status": "OFF",
+                        "start": 0,
+                        "end": 6
+                    },
+                    {
+                        "status": "ON",
+                        "start": 6,
+                        "end": 7
+                    },
+                    {
+                        "status": "DRIVING",
+                        "start": 7,
+                        "end": 7 + drive_today
+                    },
+                    {
+                        "status": "OFF",
+                        "start": 7 + drive_today,
+                        "end": 24
+                    }
+                ]
+            })
 
         remaining_hours -= drive_today
 
