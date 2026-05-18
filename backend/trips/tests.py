@@ -43,7 +43,11 @@ class PlanTripView(APIView):
 
             path = generate_log_sheet(log)
 
-            generated_logs.append(path)
+            # generated_logs.append(path)
+
+            generated_logs.append(
+                f"http://127.0.0.1:8000/{path}"
+            )
 
         # temporary fake distance
         # total_miles = 1400
