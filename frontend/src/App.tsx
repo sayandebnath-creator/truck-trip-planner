@@ -17,14 +17,17 @@ function App() {
 
   const [routeCoords, setRouteCoords] = useState<any>([]);
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async () => {
 
     try {
-
+      setLoading(true);
       const response = await api.post("/plan-trip/", form);
 
       // setResult(response.data);
       // console.log(response.data);
+      setLoading(false);
       setResult(response.data);
 
       const encoded =
@@ -38,6 +41,7 @@ function App() {
       setRouteCoords(decoded.map((c: any) => [c[0], c[1]]));
 
     } catch (error) {
+      setLoading(false);
       console.error(error);
     }
   };
@@ -47,9 +51,13 @@ function App() {
 
       <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
 
-        <h1 className="text-3xl font-bold mb-8">
-          HOS Trip Planner
+        <h1 className="text-4xl font-bold">
+          Driver HOS Trip Planner
         </h1>
+
+        <p className="text-gray-500 mt-2">
+          Route planning and ELD generation
+        </p>
 
         <div className="space-y-4">
 
@@ -100,9 +108,10 @@ function App() {
 
           <button
             onClick={handleSubmit}
+            disabled={loading}
             className="w-full bg-black text-white p-3 rounded-xl"
           >
-            Generate Trip
+            {loading ? "Generating..." : "Generate Trip"}
           </button>
         </div>
 
@@ -134,6 +143,40 @@ function App() {
               <h2 className="text-2xl font-bold mb-6">
                 Trip Summary
               </h2>
+
+              <div className="mt-8">
+
+                <h2 className="text-2xl font-bold mb-4">
+                  Planned Stops
+                </h2>
+
+                <div className="space-y-3">
+
+                  {result.break_stops.map((stop: any, idx: number) => (
+
+                    <div
+                      key={idx}
+                      className="bg-yellow-50 p-4 rounded-xl"
+                    >
+                      30-min break on Day {stop.day}
+                    </div>
+
+                  ))}
+
+                  {result.fuel_stops.map((stop: any, idx: number) => (
+
+                    <div
+                      key={idx}
+                      className="bg-blue-50 p-4 rounded-xl"
+                    >
+                      Fuel stop near mile {stop.mile}
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </div>
 
               <div className="grid grid-cols-3 gap-4">
 
