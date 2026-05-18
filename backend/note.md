@@ -35,3 +35,5 @@ Request validation
 HOS calculation skeleton
 API contract
 App architecture
+
+# Added openroute service dynamic and removed mock data as well as added .env
