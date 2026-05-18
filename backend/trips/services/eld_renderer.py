@@ -26,6 +26,30 @@ def generate_log_sheet(day_log):
 
     draw = ImageDraw.Draw(image)
 
+    draw.text(
+    (90, 55),
+    "05/18/2026",
+    fill="black"
+    )
+
+    draw.text(
+        (520, 55),
+        str(day_log["driving_miles"]),
+        fill="black"
+    )
+
+    draw.text(
+        (340, 110),
+        "Spotter AI Logistics",
+        fill="black"
+    )
+
+    draw.text(
+        (100, 520),
+        "Pickup and delivery route",
+        fill="black"
+    )
+
     segments = day_log["segments"]
 
     previous_y = None
@@ -49,14 +73,14 @@ def generate_log_sheet(day_log):
             draw.line(
                 [(start_x, previous_y), (start_x, y)],
                 fill="black",
-                width=3
+                width=2
             )
 
         # horizontal status line
         draw.line(
             [(start_x, y), (end_x, y)],
             fill="black",
-            width=3
+            width=2
         )
 
         previous_y = y
