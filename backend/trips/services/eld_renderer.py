@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw
+import os
 
 GRID_START_X = 90
 GRID_END_X = 570
@@ -89,7 +90,8 @@ def generate_log_sheet(day_log):
     output_path = (
         f"media/log_day_{day_log['day']}.png"
     )
-
+    
+    os.makedirs("media", exist_ok=True)
     image.save(output_path)
 
     return output_path
