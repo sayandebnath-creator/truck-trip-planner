@@ -9,6 +9,8 @@ from .services.hos import build_trip_plan
 
 from .services.routing import geocode, get_route
 
+from .services.eld_renderer import generate_log_sheet
+
 class PlanTripView(APIView):
 
     def post(self, request):
@@ -35,6 +37,14 @@ class PlanTripView(APIView):
         # logs = build_trip_plan(miles)
         trip_plan = build_trip_plan(miles)
 
+        generated_logs = []
+
+        for log in trip_plan["logs"]:
+
+            path = generate_log_sheet(log)
+
+            generated_logs.append(path)
+
         # temporary fake distance
         # total_miles = 1400
 
@@ -43,6 +53,7 @@ class PlanTripView(APIView):
         return Response({
             # "distance_miles": total_miles,
             "distance_miles": round(miles, 2),
+            "log_images": generated_logs,
             # "logs": logs,
             "route": route,
             **trip_plan
