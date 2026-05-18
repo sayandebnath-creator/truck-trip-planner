@@ -24,7 +24,7 @@ function App() {
       const response = await api.post("/plan-trip/", form);
 
       // setResult(response.data);
-
+      // console.log(response.data);
       setResult(response.data);
 
       const encoded =
@@ -217,6 +217,34 @@ function App() {
                     </div>
 
                   ))}
+
+                </div>
+
+                <div className="mt-10">
+
+                  <h2 className="text-2xl font-bold mb-4">
+                    Generated ELD Logs
+                  </h2>
+
+                  <div className="space-y-8">
+
+                    {result.log_images.map(
+                      (image: string, index: number) => (
+
+                        <div key={index}>
+
+                          <img
+                            src={image}
+                            alt="ELD Log"
+                            className="rounded-xl border shadow"
+                          />
+
+                        </div>
+
+                      )
+                    )}
+
+                  </div>
 
                 </div>
 
