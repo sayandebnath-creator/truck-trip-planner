@@ -37,6 +37,7 @@ API contract
 App architecture
 
 # Added openroute service dynamic and removed mock data as well as added .env
+(HEIGIT Account)
 
 # We now generate:
 
