@@ -106,7 +106,8 @@ function App() {
           </button>
         </div>
 
-        {
+        {/* this was raw json data */}
+        {/* {
           result && (
             <div className="mt-10">
 
@@ -121,6 +122,108 @@ function App() {
               </div>
 
             </div>
+          )
+        } */}
+
+        {/* this is polished ui removing raw json data */}
+        {
+          result && (
+
+            <div className="mt-10">
+
+              <h2 className="text-2xl font-bold mb-6">
+                Trip Summary
+              </h2>
+
+              <div className="grid grid-cols-3 gap-4">
+
+                <div className="bg-gray-100 p-4 rounded-xl">
+                  <h3 className="font-bold">
+                    Distance
+                  </h3>
+
+                  <p>
+                    {result.distance_miles} miles
+                  </p>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-xl">
+                  <h3 className="font-bold">
+                    Trip Days
+                  </h3>
+
+                  <p>
+                    {result.days_required}
+                  </p>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-xl">
+                  <h3 className="font-bold">
+                    Fuel Stops
+                  </h3>
+
+                  <p>
+                    {result.fuel_stops.length}
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="mt-8">
+
+                <h2 className="text-2xl font-bold mb-4">
+                  Daily Driving Plan
+                </h2>
+
+                <div className="space-y-4">
+
+                  {result.logs.map((log: any) => (
+
+                    <div
+                      key={log.day}
+                      className="bg-white border rounded-xl p-4"
+                    >
+
+                      <div className="flex justify-between">
+
+                        <h3 className="font-bold">
+                          Day {log.day}
+                        </h3>
+
+                        <span>
+                          {log.driving_miles} miles
+                        </span>
+
+                      </div>
+
+                      <div className="mt-2 text-sm text-gray-600">
+
+                        Driving Hours:
+                        {" "}
+                        {log.driving_hours}
+
+                      </div>
+
+                      <div className="text-sm text-gray-600">
+
+                        30 Min Break:
+                        {" "}
+                        {log.break_required
+                          ? "Required"
+                          : "No"}
+
+                      </div>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+
           )
         }
 
