@@ -76,7 +76,7 @@ The application does not currently implement:
 # Project Structure
 
 ```bash
-spotter-hos-trip-planner/
+truck-trip-planner/
 ├── backend/
 │   ├── core/
 │   ├── trips/
