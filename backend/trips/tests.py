@@ -46,7 +46,10 @@ class PlanTripView(APIView):
             # generated_logs.append(path)
 
             generated_logs.append(
-                f"http://127.0.0.1:8000/{path}"
+                # f"http://127.0.0.1:8000/{path}"
+
+                # backend was still returning image URLs so I changed to this
+                request.build_absolute_uri(f"/{path}")
             )
 
         # temporary fake distance
