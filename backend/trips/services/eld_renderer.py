@@ -1,15 +1,15 @@
 from PIL import Image, ImageDraw
 
-GRID_START_X = 105
+GRID_START_X = 90
 GRID_END_X = 570
 
 HOUR_WIDTH = (GRID_END_X - GRID_START_X) / 24
 
 ROWS = {
-    "OFF": 262,
-    "SLEEPER": 292,
-    "DRIVING": 322,
-    "ON": 352
+    "OFF": 190,
+    "SLEEPER": 215,
+    "DRIVING": 240,
+    "ON": 265
 }
 
 
