@@ -2,22 +2,32 @@
 
 A full-stack logistics planning application built with Django and React that generates Hours of Service (HOS) compliant trip plans and Electronic Logging Device (ELD) daily logs for truck drivers.
 
-## Overview
+---
 
-<!-- This project was built as part of a Full Stack Developer assessment. -->
+# Live Demo
 
-The application accepts trip details such as:
-- Current location
-- Pickup location
-- Dropoff location
-- Current cycle hours used
+## Frontend
+https://truck-trip-planner-fawn.vercel.app/
 
-It then:
-- Calculates trip distance and routing
-- Plans HOS-compliant driving schedules
-- Generates rest and fuel stops
-- Produces driver daily log sheets (ELD logs)
-- Visualizes trip routes on a map
+## Backend API
+https://truck-trip-planner-djnv.onrender.com/api/plan-trip/
+
+---
+
+# Features
+
+- Route planning and distance calculation
+- HOS-compliant driving schedule generation
+- Multi-day trip planning
+- 70-hour / 8-day cycle support
+- 11-hour driving limit handling
+- 14-hour duty window calculations
+- 30-minute mandatory break support
+- Fuel stop planning
+- ELD log sheet generation
+- Interactive route visualization using maps
+- REST API architecture
+- Responsive frontend UI
 
 ---
 
@@ -32,44 +42,52 @@ It then:
 ## Frontend
 - React
 - Vite
+- TypeScript
 - TailwindCSS
 - React Leaflet
 
-## APIs
-- OpenRouteService
+## APIs & Services
+- OpenRouteService API
 - OpenStreetMap
+- Render
+- Vercel
 
 ---
 
-# Features
+# System Architecture
 
-- Trip route planning
-- HOS driving calculations
-- 70-hour / 8-day cycle support
-- 11-hour driving limit enforcement
-- 14-hour duty window handling
-- 30-minute mandatory break calculations
-- Fuel stop planning
-- Multi-day trip handling
-- ELD log generation
-- Interactive route visualization
+```text
+Frontend (React)
+        ↓
+Django REST API
+        ↓
+Routing + HOS Planning Services
+        ↓
+ELD Log Renderer
+        ↓
+Generated Driver Logs + Route Data
+```
 
 ---
 
 # Hours of Service Assumptions
 
 This MVP currently supports:
+
 - Property-carrying drivers
 - 70 hours / 8 days cycle
 - Standard driving conditions
 - Fueling every 1000 miles
 - 1 hour pickup and dropoff time
+- Simplified HOS scheduling logic
 
-The application does not currently implement:
+Not currently implemented:
+
 - Split sleeper berth logic
 - Adverse driving condition exceptions
 - Intrastate-specific exemptions
-- Advanced fleet management features
+- Real-time traffic handling
+- Advanced fleet management
 
 ---
 
@@ -91,6 +109,16 @@ truck-trip-planner/
 │   └── public/
 │
 └── README.md
+```
+
+---
+
+# Environment Variables
+
+## Backend `.env`
+
+```env
+OPENROUTE_API_KEY=your_api_key
 ```
 
 ---
@@ -184,11 +212,12 @@ POST /api/plan-trip/
 }
 ```
 
-### Response
+### Sample Response
 
 ```json
 {
   "distance_miles": 1400,
+  "days_required": 2,
   "logs": [
     {
       "day": 1,
@@ -202,40 +231,28 @@ POST /api/plan-trip/
 
 ---
 
-# Future Improvements
-
-- Advanced HOS compliance engine
-- Split sleeper berth support
-- Real-time traffic integration
-- Drag-and-drop trip planning
-- PDF export for log sheets
-- Driver dashboard analytics
-- Authentication and fleet management
-
----
-
 # Deployment
 
 ## Frontend
 - Vercel
 
 ## Backend
-- Render / Railway
+- Render
 
-<!-- --- -->
+---
 
-<!-- # Assessment Notes
+# Future Improvements
 
-This project was developed as part of a Full Stack Developer technical assessment focused on:
-- Route planning
-- HOS compliance
-- ELD log generation
-- Full-stack system design
-- UI/UX quality -->
+- Advanced HOS compliance engine
+- Split sleeper berth support
+- PDF export for ELD logs
+- Authentication and fleet management
+- Driver dashboard analytics
+- Real-time traffic integration
+- Route optimization
 
 ---
 
 # License
 
-<!-- This project is intended for assessment and demonstration purposes. -->
 This project is intended for educational and demonstration purposes.
