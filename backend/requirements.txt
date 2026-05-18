@@ -3,3 +3,4 @@ djangorestframework
 pillow 
 requests 
 django-cors-headers
+python-dotenv

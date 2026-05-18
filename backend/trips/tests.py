@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from core.serializers import TripSerializer
 from .services.hos import build_trip_plan
 
+from .services.routing import geocode, get_route
+
 class PlanTripView(APIView):
 
     def post(self, request):
@@ -17,12 +19,29 @@ class PlanTripView(APIView):
 
         data = serializer.validated_data
 
-        # temporary fake distance
-        total_miles = 1400
+        # added dynamic real data fetching
+        pickup = geocode(data["pickup_location"])
 
-        logs = build_trip_plan(total_miles)
+        dropoff = geocode(data["dropoff_location"])
+
+        route = get_route(pickup, dropoff)
+
+        summary = route["routes"][0]["summary"]
+
+        meters = summary["distance"]
+
+        miles = meters * 0.000621371
+
+        logs = build_trip_plan(miles)
+
+        # temporary fake distance
+        # total_miles = 1400
+
+        # logs = build_trip_plan(total_miles)
 
         return Response({
-            "distance_miles": total_miles,
-            "logs": logs
+            # "distance_miles": total_miles,
+            "distance_miles": round(miles, 2),
+            "logs": logs,
+            "route": route
         })
