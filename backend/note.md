@@ -70,3 +70,5 @@ I already have the blank log sheet image and FMCSA examples.
 So now we generate actual driver logs.
 
 # We converted the calculated driving/off-duty schedule into actual plotted FMCSA-style ELD log lines drawn directly onto the driver log sheet image.
+
+# Added media configuration so generated log images can be served by Django.
