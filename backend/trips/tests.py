@@ -32,7 +32,8 @@ class PlanTripView(APIView):
 
         miles = meters * 0.000621371
 
-        logs = build_trip_plan(miles)
+        # logs = build_trip_plan(miles)
+        trip_plan = build_trip_plan(miles)
 
         # temporary fake distance
         # total_miles = 1400
@@ -42,6 +43,7 @@ class PlanTripView(APIView):
         return Response({
             # "distance_miles": total_miles,
             "distance_miles": round(miles, 2),
-            "logs": logs,
-            "route": route
+            # "logs": logs,
+            "route": route,
+            **trip_plan
         })

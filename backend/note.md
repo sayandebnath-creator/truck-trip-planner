@@ -37,3 +37,9 @@ API contract
 App architecture
 
 # Added openroute service dynamic and removed mock data as well as added .env
+
+# We now generate:
+
+fuel stops
+break stops
+overnight resets
