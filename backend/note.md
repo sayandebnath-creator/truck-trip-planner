@@ -43,3 +43,19 @@ App architecture
 fuel stops
 break stops
 overnight resets
+
+# Remaining Major Tasks
+1. Generate ELD log sheets
+
+MOST IMPORTANT
+
+2. Export logs as PNG/PDF
+3. Better UI polish
+cards
+spacing
+loading states
+responsive layout
+4. Deployment
+backend
+frontend
+5. Loom walkthrough
