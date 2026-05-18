@@ -60,3 +60,11 @@ responsive layout
 backend
 frontend
 5. Loom walkthrough
+
+# ELD / Driver Log Sheet Generation
+This is likely the highest scoring part of the assignment because they explicitly mentioned:
+
+“Daily Log Sheets filled out — need to draw on the log and fill out the sheet”
+
+I already have the blank log sheet image and FMCSA examples.
+So now we generate actual driver logs.
