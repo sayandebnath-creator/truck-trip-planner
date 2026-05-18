@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { api } from "./services/api";
 
+import polyline from "@mapbox/polyline";
+import RouteMap from "./components/RouteMap";
+
 function App() {
 
   const [form, setForm] = useState({
@@ -12,13 +15,27 @@ function App() {
 
   const [result, setResult] = useState<any>(null);
 
+  const [routeCoords, setRouteCoords] = useState<any>([]);
+
   const handleSubmit = async () => {
 
     try {
 
       const response = await api.post("/plan-trip/", form);
 
+      // setResult(response.data);
+
       setResult(response.data);
+
+      const encoded =
+        response.data.route.routes[0].geometry;
+
+      const decoded = polyline.decode(encoded);
+
+      // setRouteCoords(decoded);
+
+      // Keeping this because polyline decode returns generic arrays, and Leaflet expects coordinate pairs in proper [lat, lng] format.
+      setRouteCoords(decoded.map((c: any) => [c[0], c[1]]));
 
     } catch (error) {
       console.error(error);
@@ -103,6 +120,14 @@ function App() {
                 </pre>
               </div>
 
+            </div>
+          )
+        }
+
+        {
+          routeCoords.length > 0 && (
+            <div className="mt-8">
+              <RouteMap coordinates={routeCoords} />
             </div>
           )
         }
