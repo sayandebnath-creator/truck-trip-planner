@@ -7,6 +7,9 @@ A full-stack logistics planning application built with Django and React that gen
 # Live Demo
 ![Screenshot](./frontend/src/assets/Screenshot%202026-05-18%20at%2011.26.56 PM.png)
 
+## Link:-
+[Walkthrough Video](https://drive.google.com/file/d/1M5C6ZwQF8F4wtbgo3ItVXNVEcvKCAWfI/view?usp=sharing)
+
 ## Frontend
 https://truck-trip-planner-fawn.vercel.app/
 
